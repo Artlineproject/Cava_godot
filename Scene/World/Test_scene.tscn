@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6lwnj1pnwsmb"]
+
+[ext_resource type="Script" path="res://Scene/World/test_scene.gd" id="1_8pw8x"]
+[ext_resource type="PackedScene" uid="uid://bpasaak71y5mu" path="res://Scene/Player/player.tscn" id="1_i3h60"]
+[ext_resource type="Texture2D" uid="uid://cpq8wssap3m7n" path="res://Scene/Tilemap/background_CV_Mond_tuto_2_tall_texture.png" id="3_xmf5a"]
+[ext_resource type="PackedScene" uid="uid://w2nbb5114tdv" path="res://Symboles/SceneSymbol/Symbole_1.tscn" id="4_hlvfj"]
+[ext_resource type="PackedScene" uid="uid://p7ev1nklu38a" path="res://Scene/Player/PJSouris.tscn" id="5_ji8vu"]
+[ext_resource type="PackedScene" uid="uid://cxulius4qm6xa" path="res://Portes/Doors.tscn" id="6_cft1b"]
+[ext_resource type="PackedScene" uid="uid://1eau0lcfakeb" path="res://Symboles/SceneSymbol/Plaque_code.tscn" id="7_68rmy"]
+[ext_resource type="PackedScene" uid="uid://ck55iofudb6jt" path="res://Scene/Tilemap/Tilemap.tscn" id="7_cgjkk"]
+[ext_resource type="PackedScene" uid="uid://iln3xbxv3by4" path="res://Symboles/SceneSymbol/Symbole_2.tscn" id="9_d8t2r"]
+[ext_resource type="PackedScene" uid="uid://cq5kd2r8c7qrq" path="res://Symboles/SceneSymbol/Symbole_3.tscn" id="10_rvlqp"]
+
+[node name="TestScene" type="Node2D"]
+script = ExtResource("1_8pw8x")
+
+[node name="Backgrounds" type="Node" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Backgrounds"]
+visibility_layer = 2
+
+[node name="Background" type="Sprite2D" parent="Backgrounds"]
+light_mask = 2
+position = Vector2(888, 8)
+texture = ExtResource("3_xmf5a")
+
+[node name="Tilemaps" type="Node" parent="."]
+
+[node name="TileMap" parent="Tilemaps" instance=ExtResource("7_cgjkk")]
+position = Vector2(0, -80)
+
+[node name="TileMap2" parent="Tilemaps" instance=ExtResource("7_cgjkk")]
+position = Vector2(2558, -344)
+
+[node name="Symbole_3" parent="Tilemaps" instance=ExtResource("10_rvlqp")]
+position = Vector2(1234, -279)
+visible_only_with_light = true
+
+[node name="doooors" type="Node" parent="."]
+
+[node name="Doors" parent="doooors" instance=ExtResource("6_cft1b")]
+position = Vector2(2197, -163)
+destination_door_path = NodePath("../Doors2")
+
+[node name="Doors2" parent="doooors" instance=ExtResource("6_cft1b")]
+position = Vector2(2700, -365)
+door_id = "door_1_2"
+
+[node name="symbols" type="Node" parent="."]
+
+[node name="Symbole_1" parent="symbols" instance=ExtResource("4_hlvfj")]
+position = Vector2(464, -218)
+visible_only_with_light = true
+
+[node name="Symbole_2" parent="symbols" instance=ExtResource("9_d8t2r")]
+position = Vector2(690, -273)
+visible_only_with_light = true
+
+[node name="Players" type="Node" parent="."]
+
+[node name="Player" parent="Players" groups=["player"] instance=ExtResource("1_i3h60")]
+position = Vector2(1832, -168)
+jumpHeight = 3.0
+
+[node name="PanelCode" parent="Players" instance=ExtResource("7_68rmy")]
+light_mask = 0
+position = Vector2(1988, -244)
+associated_door_name = "door_1_1"
+metadata/associated_door = "Doors"
+
+[node name="PjSouris" parent="Players" groups=["player_mouse"] instance=ExtResource("5_ji8vu")]
+position = Vector2(480, -176)
+light_intensity = 1.0

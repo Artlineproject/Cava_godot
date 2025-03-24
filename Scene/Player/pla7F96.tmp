@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=3 uid="uid://bpasaak71y5mu"]
+
+[ext_resource type="Script" path="res://Scene/Player/Player.gd" id="1_bnnlp"]
+[ext_resource type="Texture2D" uid="uid://djpwsxegjjkmo" path="res://Scene/Player/Assets/PJ_clavier.png" id="2_1f6pe"]
+[ext_resource type="Texture2D" uid="uid://b7w2ogvdfejxr" path="res://Scene/Player/Assets/Halo_PJ_clavier.png" id="2_kyl0x"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_ui07d"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_kq2ei"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_uwuil"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr6br"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(0, 198, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xvdc"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(32, 198, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mtsj"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(64, 198, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtutn"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(0, 132, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57two"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(32, 132, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8h5d"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(0, 66, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkqes"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(32, 66, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k0sp"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(64, 66, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53mtg"]
+atlas = ExtResource("2_1f6pe")
+region = Rect2(96, 66, 32, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxggo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr6br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xvdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mtsj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtutn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57two")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8h5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkqes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k0sp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53mtg")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1iyt"]
+radius = 16.0
+height = 96.0
+
+[sub_resource type="Resource" id="Resource_rktxt"]
+script = ExtResource("13_uwuil")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
+collision_mask = 2
+floor_constant_speed = true
+script = ExtResource("1_bnnlp")
+PlayerSprite = NodePath("AnimatedSprite2D")
+PlayerCollider = NodePath("CollisionShape2D")
+directionalSnap = true
+jump = true
+idle = true
+walk = true
+metadata/_edit_horizontal_guides_ = [-96.0]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.38419e-07, -48)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_lxggo")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -48)
+shape = SubResource("CapsuleShape2D_f1iyt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("11_ui07d")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+script = ExtResource("12_kq2ei")
+tween_resource = SubResource("Resource_rktxt")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -52)
+scale = Vector2(1.33333, 1.875)
+texture = ExtResource("2_kyl0x")
+texture_scale = 0.5

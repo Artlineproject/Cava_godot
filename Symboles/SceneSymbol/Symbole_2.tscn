@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://iln3xbxv3by4"]
+
+[ext_resource type="Script" path="res://Symboles/SceneSymbol/Symbole_1.gd" id="1_ms2aa"]
+[ext_resource type="Texture2D" uid="uid://dvqkf7udbht22" path="res://Symboles/Assets/Plaque_Code.png" id="2_wbamn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fribv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhu0e"]
+atlas = ExtResource("2_wbamn")
+region = Rect2(10, 112, 11, 7)
+
+[node name="Symbole_2" type="Area2D"]
+script = ExtResource("1_ms2aa")
+visible_only_with_light = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fribv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_bhu0e")

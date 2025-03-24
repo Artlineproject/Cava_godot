@@ -1,0 +1,130 @@
+[gd_scene load_steps=17 format=3 uid="uid://cxulius4qm6xa"]
+
+[ext_resource type="Script" path="res://Portes/doors.gd" id="1_aen8x"]
+[ext_resource type="Texture2D" uid="uid://b50w83jlhp2lq" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_6_final.png" id="2_y6lgm"]
+[ext_resource type="Texture2D" uid="uid://2unsncssdhe1" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_5.png" id="3_w40gv"]
+[ext_resource type="Texture2D" uid="uid://yffvaqltljkj" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_4.png" id="4_lbbh6"]
+[ext_resource type="Texture2D" uid="uid://ctc37vny4rvtl" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_3.png" id="5_ti51u"]
+[ext_resource type="Texture2D" uid="uid://6r4e3305ig7c" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_2.png" id="6_2vr5j"]
+[ext_resource type="Texture2D" uid="uid://cimtooici8tai" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_1.png" id="7_qjhv7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odoj7"]
+size = Vector2(36, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo6ox"]
+size = Vector2(103, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1w5b"]
+atlas = ExtResource("2_y6lgm")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6oco"]
+atlas = ExtResource("3_w40gv")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amg6b"]
+atlas = ExtResource("4_lbbh6")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggd7d"]
+atlas = ExtResource("5_ti51u")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfprf"]
+atlas = ExtResource("6_2vr5j")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26s25"]
+atlas = ExtResource("7_qjhv7")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7r5y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1w5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6oco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amg6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggd7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfprf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26s25")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26s25")
+}],
+"loop": false,
+"name": &"idle_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1w5b")
+}],
+"loop": false,
+"name": &"idle_open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26s25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfprf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggd7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amg6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6oco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1w5b")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="Doors" type="Node2D"]
+scale = Vector2(2.3, 2.3)
+script = ExtResource("1_aen8x")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_odoj7")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0.5, -38)
+shape = SubResource("RectangleShape2D_uo6ox")
+debug_color = Color(0.225528, 0.15133, 0.273091, 0.42)
+
+[node name="DoorSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -30)
+sprite_frames = SubResource("SpriteFrames_a7r5y")
+animation = &"idle_closed"
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, -21)

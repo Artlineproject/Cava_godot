@@ -1,0 +1,816 @@
+[gd_scene load_steps=5 format=3 uid="uid://t7ksetxrxncw"]
+
+[ext_resource type="PackedScene" uid="uid://ccv1xjnw6vnpy" path="res://Scene/Tilemap/tile_map.tscn" id="1_oahq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcmxd"]
+size = Vector2(12, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvxa6"]
+size = Vector2(93.954, 14.2071)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je7cg"]
+region = Rect2(80, 64, 48, 15)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_oahq8")]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(0, -17)
+animation = &""
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_wcmxd")
+
+[node name="lCast" type="RayCast2D" parent="Player"]
+position = Vector2(-6, -28)
+target_position = Vector2(0, -25)
+
+[node name="mCast" type="RayCast2D" parent="Player"]
+position = Vector2(0, -28)
+target_position = Vector2(0, -25)
+
+[node name="rCast" type="RayCast2D" parent="Player"]
+position = Vector2(6, -28)
+target_position = Vector2(0, -25)
+
+[node name="cCast" type="RayCast2D" parent="Player"]
+position = Vector2(0, -15)
+target_position = Vector2(0, -10)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -27)
+zoom = Vector2(2, 2)
+
+[node name="VScrollBar" type="VScrollBar" parent="Player/Camera2D"]
+offset_left = 209.0
+offset_top = -243.0
+offset_right = 217.0
+offset_bottom = 243.0
+max_value = 750.0
+step = 1.0
+page = 50.0
+
+[node name="Tab" type="Button" parent="Player/Camera2D"]
+offset_left = 193.0
+offset_top = -244.0
+offset_right = 209.0
+offset_bottom = -220.0
+focus_mode = 0
+text = ">"
+
+[node name="Options Menu" type="CanvasGroup" parent="Player/Camera2D"]
+z_index = 1000
+position = Vector2(218, -244)
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/Camera2D/Options Menu"]
+offset_left = -1.0
+offset_right = 215.0
+offset_bottom = 1085.0
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D/Options Menu/MarginContainer"]
+layout_mode = 2
+color = Color(0.384314, 0.443137, 0.647059, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/Camera2D/Options Menu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="UpdateSettings" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Update Settings (Enter)"
+
+[node name="Presets" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Presets"
+flat = true
+
+[node name="Mario" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Mario"
+
+[node name="HollowKnight" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Hollow Knight"
+
+[node name="MeatBoy" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Meat Boy"
+
+[node name="Celeste" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Celeste"
+
+[node name="MovementLabel" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Variables for horizontal movement"
+theme_override_font_sizes/font_size = 16
+text = "Movement"
+flat = true
+
+[node name="label" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Max Movement Speed"
+fit_content = true
+
+[node name="MaxSpeed" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The max speed your player will move"
+focus_mode = 0
+min_value = 50.0
+max_value = 500.0
+value = 200.0
+
+[node name="Label" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/MaxSpeed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label2" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "Time to Reach Max Speed"
+fit_content = true
+
+[node name="TTRMaxSpeed" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How fast your player will reach max speed from rest (in seconds)"
+focus_mode = 0
+max_value = 4.0
+step = 0.1
+value = 0.2
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/TTRMaxSpeed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label3" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "Time to Reach Zero Speed"
+fit_content = true
+
+[node name="TTRZeroSpeed" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How fast your player will reach zero speed from max speed (in seconds)"
+focus_mode = 0
+max_value = 4.0
+step = 0.1
+value = 0.2
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/TTRZeroSpeed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="DSnap" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If true, player will instantly move and switch directions. 
+Overrides the \"timeToReach\" variables, setting them to 0."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Directional Snap"
+
+[node name="RModifier" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If enabled, the default movement speed will by 1/2 of the 
+maxSpeed and the player must hold a \"run\" button to accelerate to 
+max speed. Assign \"run\" (case sensitive) in the project input 
+settings."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Hold (key) to Run"
+
+[node name="JumpLabel" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Jumping/Gravity"
+flat = true
+
+[node name="label4" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Jump Height"
+fit_content = true
+
+[node name="JumpHeight" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The peak height of your player's jump"
+focus_mode = 0
+max_value = 20.0
+step = 0.1
+value = 2.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/JumpHeight"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label5" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Jumps"
+fit_content = true
+
+[node name="Jumps" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How many jumps your character can do before needing to touch 
+the ground again. Giving more than 1 jump disbales jump buffering 
+and coyote time."
+focus_mode = 0
+max_value = 4.0
+value = 1.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Jumps"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label6" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Graivty"
+fit_content = true
+
+[node name="Gravity" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The strength at which your character will be pulled to the ground."
+focus_mode = 0
+value = 20.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Gravity"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label7" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Terminal Velocity (Max Falling Speed)"
+fit_content = true
+
+[node name="TerminalVel" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The fastest your player can fall"
+focus_mode = 0
+max_value = 1000.0
+value = 500.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/TerminalVel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label8" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Descending Gravity Factor"
+fit_content = true
+
+[node name="DescendingGravFactor" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Your player will move this amount faster when falling providing a 
+less floaty jump curve."
+focus_mode = 0
+min_value = 0.5
+max_value = 3.0
+step = 0.1
+value = 1.3
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/DescendingGravFactor"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="VarJumpHeight" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Enabling this toggle makes it so that when the player releases the jump key while still ascending, their vertical velocity cut in half, providing variable jump height."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+button_pressed = true
+text = "Variable Jump Height"
+
+[node name="label24" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Jump Variable"
+fit_content = true
+
+[node name="JumpVariable" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The window of time (in seconds) that your player can press the 
+jump button before hitting the ground and still have their input 
+registered as a jump. This is set to 0.2 seconds by default."
+focus_mode = 0
+min_value = 1.0
+max_value = 10.0
+step = 0.05
+value = 2.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/JumpVariable"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label9" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Coyote Time"
+fit_content = true
+
+[node name="CoyoteTime" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How much extra time (in seconds) your player will be given to jump 
+after falling off an edge. This is set to 0.2 seconds by default."
+focus_mode = 0
+max_value = 0.5
+step = 0.05
+value = 0.2
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/CoyoteTime"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label10" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Jump Buffering"
+fit_content = true
+
+[node name="JumpBuffering" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The window of time (in seconds) that your player can press the 
+jump button before hitting the ground and still have their input 
+registered as a jump. This is set to 0.2 seconds by default."
+focus_mode = 0
+max_value = 0.5
+step = 0.05
+value = 0.2
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/JumpBuffering"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="WallJumpLabel" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Wall Jumping"
+flat = true
+
+[node name="Wall Jump" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Allows your player to jump off of walls. Without a Wall Kick Angle, 
+the player will be able to scale the wall."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Wall Jumping"
+
+[node name="label11" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Input Pause After Wall Jump"
+fit_content = true
+
+[node name="InputPause" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How long the player's movement input will be ignored after wall 
+jumping."
+focus_mode = 0
+max_value = 0.5
+step = 0.05
+value = 0.1
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/InputPause"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label12" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Wall Jump Angle"
+fit_content = true
+
+[node name="Angle" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The angle at which your player will jump away from the wall. 0 is 
+straight away from the wall, 90 is straight up. Does not account for 
+gravity"
+focus_mode = 0
+max_value = 90.0
+step = 0.5
+value = 60.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Angle"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="label13" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Wall Sliding Factor"
+fit_content = true
+
+[node name="Sliding" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The player's gravity will be divided by this number when touch a 
+wall and descending. Set to 1 by default meaning no change will be 
+made to the gravity and there is effectively no wall sliding. THIS IS 
+OVERRIDDED BY WALL LATCH."
+focus_mode = 0
+min_value = 0.1
+max_value = 20.0
+step = 0.1
+value = 1.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Sliding"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="Latching" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If enabled, the player's gravity will be set to 0 when touching a wall and descending. THIS WILL OVERRIDE WALLSLIDING."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Wall Latching"
+
+[node name="LatchingMod" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Wall latching must be enabled for this to work. If enabled, the 
+player must hold down the \"latch\" key to wall latch. Assign \"latch\" in 
+the project input settings. The player's input will be ignored when 
+latching."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Hold (key) to Wall Latch"
+
+[node name="Dashing" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Dashing"
+flat = true
+
+[node name="label23" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Dashing"
+fit_content = true
+
+[node name="DashType" type="OptionButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The type of dashes the player can do."
+focus_mode = 0
+selected = 0
+item_count = 5
+popup/item_0/text = "None"
+popup/item_1/text = "Horizontal"
+popup/item_1/id = 1
+popup/item_2/text = "Vertical"
+popup/item_2/id = 2
+popup/item_3/text = "4 Way"
+popup/item_3/id = 3
+popup/item_4/text = "8 Way"
+popup/item_4/id = 4
+
+[node name="label14" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Dashes"
+fit_content = true
+
+[node name="Dashes" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How many dashes your player can do before needing to hit the 
+ground."
+focus_mode = 0
+max_value = 10.0
+value = 1.0
+rounded = true
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Dashes"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="DashCancel" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If enabled, pressing the opposite direction of a dash, during a dash, 
+will zero the player's velocity."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+button_pressed = true
+text = "Press Opposite Direction to Cancel Dash"
+
+[node name="label15" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Dash Length"
+fit_content = true
+
+[node name="Dash Length" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How far the player will dash. One of the dashing toggles must be on 
+for this to be used."
+focus_mode = 0
+min_value = 1.5
+max_value = 4.0
+step = 0.5
+value = 2.5
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Dash Length"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="JumpCorrection" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Jump Correction"
+flat = true
+
+[node name="CornerCutting" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If the player's head is blocked by a jump but only by a little, the 
+player will be nudged in the right direction and their jump will 
+execute as intended. NEEDS RAYCASTS TO BE ATTACHED TO THE 
+PLAYER NODE. AND ASSIGNED TO MOUNTING RAYCAST. 
+DISTANCE OF MOUNTING DETERMINED BY PLACEMENT OF 
+RAYCAST."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Corner Cutting"
+
+[node name="label16" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Correction Amount"
+fit_content = true
+
+[node name="CorAmount" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "How many pixels the player will be pushed (per frame) if corner 
+cutting is needed to correct a jump."
+focus_mode = 0
+min_value = 1.0
+max_value = 5.0
+step = 0.25
+value = 1.5
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/CorAmount"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="showCasts" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Press to show the Raycasts that do the corner cutting calculations"
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Show Raycasts"
+
+[node name="label17" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Left Raycast:      Assigned"
+fit_content = true
+
+[node name="label18" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Middle Raycast:   Assigned"
+fit_content = true
+
+[node name="label19" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Right Raycast:     Assigned"
+fit_content = true
+
+[node name="Down Commands" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Down Commands"
+flat = true
+
+[node name="Crouching" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Holding down will crouch the player. Crouching script may need to 
+be changed depending on how your player's size proportions are. It 
+is built for 32x player's sprites."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Crouching"
+
+[node name="Can Roll" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Holding down and pressing the input for \"roll\" will execute a roll if 
+the player is grounded."
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Rolling"
+
+[node name="label20" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Roll Length"
+fit_content = true
+
+[node name="Roll Length" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+min_value = 1.25
+max_value = 2.0
+step = 0.25
+value = 2.0
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Roll Length"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="GroundPounding" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If enabled, the player will stop all horizontal movement midair, wait 
+(groundPoundPause) seconds, and then slam down into the ground 
+when down is pressed. "
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Ground Pounding"
+
+[node name="label21" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Ground Pound Pause"
+fit_content = true
+
+[node name="GPPTime" type="HSlider" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "The amount of time the player will hover in the air before 
+completing a ground pound (in seconds)"
+focus_mode = 0
+min_value = 0.05
+max_value = 0.75
+step = 0.05
+value = 0.25
+
+[node name="sliderLabel" type="Label" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/GPPTime"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="GPC" type="CheckButton" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If enabled, pressing up will end the ground pound early"
+focus_mode = 0
+theme_override_font_sizes/font_size = 8
+text = "Press Up to Cancel Ground Pound"
+
+[node name="JumpCorrection3" type="Button" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Animations"
+flat = true
+
+[node name="label22" type="RichTextLabel" parent="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+text = "Has all animations: True"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/Camera2D"]
+offset_left = -431.0
+offset_top = -242.0
+offset_right = 69.0
+offset_bottom = -102.0
+theme_override_colors/default_color = Color(0.692399, 0.512991, 0.995763, 1)
+
+[node name="lcast" type="ColorRect" parent="Player"]
+visible = false
+offset_left = -7.0
+offset_top = -52.0
+offset_right = -5.0
+offset_bottom = -28.0
+color = Color(1, 0.07704, 0.141602, 0.596078)
+
+[node name="mcast" type="ColorRect" parent="Player"]
+visible = false
+offset_left = -1.0
+offset_top = -52.0
+offset_right = 1.0
+offset_bottom = -28.0
+color = Color(0.52549, 1, 1, 0.498039)
+
+[node name="rcast" type="ColorRect" parent="Player"]
+visible = false
+offset_left = 5.0
+offset_top = -52.0
+offset_right = 7.0
+offset_bottom = -28.0
+color = Color(0.52549, 1, 1, 0.498039)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(219, -156)
+rotation = 0.488912
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.0105896, -1.09319)
+rotation = -0.187435
+shape = SubResource("RectangleShape2D_lvxa6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-22.0341, 2.98668)
+rotation = -0.187435
+texture = SubResource("AtlasTexture_je7cg")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(23.3398, -5.14964)
+rotation = -0.187435
+texture = SubResource("AtlasTexture_je7cg")
+
+[connection signal="pressed" from="Player/Camera2D/Tab" to="Player/Camera2D/Options Menu" method="_on_tab_pressed"]
+[connection signal="pressed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/UpdateSettings" to="Player/Camera2D/Options Menu" method="_on_update_settings_pressed"]
+[connection signal="pressed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Mario" to="Player/Camera2D/Options Menu" method="_on_mario_pressed"]
+[connection signal="pressed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/HollowKnight" to="Player/Camera2D/Options Menu" method="_on_hollow_knight_pressed"]
+[connection signal="pressed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/MeatBoy" to="Player/Camera2D/Options Menu" method="_on_meat_boy_pressed"]
+[connection signal="pressed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Celeste" to="Player/Camera2D/Options Menu" method="_on_celeste_pressed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/MaxSpeed" to="Player/Camera2D/Options Menu" method="_on_max_speed_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/TTRMaxSpeed" to="Player/Camera2D/Options Menu" method="_on_ttr_max_speed_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/TTRZeroSpeed" to="Player/Camera2D/Options Menu" method="_on_ttr_zero_speed_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/DSnap" to="Player/Camera2D/Options Menu" method="_on_d_snap_toggled"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/RModifier" to="Player/Camera2D/Options Menu" method="_on_r_modifier_toggled"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/JumpHeight" to="Player/Camera2D/Options Menu" method="_on_jump_height_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Jumps" to="Player/Camera2D/Options Menu" method="_on_jumps_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Gravity" to="Player/Camera2D/Options Menu" method="_on_gravity_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/TerminalVel" to="Player/Camera2D/Options Menu" method="_on_terminal_vel_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/DescendingGravFactor" to="Player/Camera2D/Options Menu" method="_on_descending_grav_factor_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/VarJumpHeight" to="Player/Camera2D/Options Menu" method="_on_var_jump_height_toggled"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/JumpVariable" to="Player/Camera2D/Options Menu" method="_on_jump_buffering_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/CoyoteTime" to="Player/Camera2D/Options Menu" method="_on_coyote_time_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/JumpBuffering" to="Player/Camera2D/Options Menu" method="_on_jump_buffering_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Wall Jump" to="Player/Camera2D/Options Menu" method="_on_wall_jump_toggled"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/InputPause" to="Player/Camera2D/Options Menu" method="_on_input_pause_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Angle" to="Player/Camera2D/Options Menu" method="_on_angle_value_changed"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Sliding" to="Player/Camera2D/Options Menu" method="_on_sliding_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Latching" to="Player/Camera2D/Options Menu" method="_on_latching_toggled"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/LatchingMod" to="Player/Camera2D/Options Menu" method="_on_latching_mod_toggled"]
+[connection signal="item_selected" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/DashType" to="Player/Camera2D/Options Menu" method="_on_dash_type_item_selected"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Dashes" to="Player/Camera2D/Options Menu" method="_on_dashes_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/DashCancel" to="Player/Camera2D/Options Menu" method="_on_dash_cancel_toggled"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Dash Length" to="Player/Camera2D/Options Menu" method="_on_dash_length_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/CornerCutting" to="Player/Camera2D/Options Menu" method="_on_corner_cutting_toggled"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/CorAmount" to="Player/Camera2D/Options Menu" method="_on_cor_amount_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/showCasts" to="Player/Camera2D/Options Menu" method="_on_show_casts_toggled"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Crouching" to="Player/Camera2D/Options Menu" method="_on_crouching_toggled"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Can Roll" to="Player/Camera2D/Options Menu" method="_on_can_roll_toggled"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/Roll Length" to="Player/Camera2D/Options Menu" method="_on_roll_length_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/GroundPounding" to="Player/Camera2D/Options Menu" method="_on_ground_pounding_toggled"]
+[connection signal="value_changed" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/GPPTime" to="Player/Camera2D/Options Menu" method="_on_gpp_time_value_changed"]
+[connection signal="toggled" from="Player/Camera2D/Options Menu/MarginContainer/VBoxContainer/GPC" to="Player/Camera2D/Options Menu" method="_on_gpc_toggled"]
