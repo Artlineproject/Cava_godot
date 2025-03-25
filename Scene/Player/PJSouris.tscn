@@ -1,11 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://p7ev1nklu38a"]
+[gd_scene load_steps=10 format=3 uid="uid://p7ev1nklu38a"]
 
 [ext_resource type="Script" path="res://Scene/Player/pj_souris.gd" id="1_bo6nk"]
-[ext_resource type="Texture2D" uid="uid://bwhr21ritg6bu" path="res://Scene/Player/Assets/PJ_souris_texture.png" id="2_hri5l"]
+[ext_resource type="Texture2D" uid="uid://btksnphap7u06" path="res://Scene/Player/Assets/PJ_souris.png" id="2_onfr4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kgw8"]
+atlas = ExtResource("2_onfr4")
+region = Rect2(0, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2u5h"]
+atlas = ExtResource("2_onfr4")
+region = Rect2(32, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfxoq"]
+atlas = ExtResource("2_onfr4")
+region = Rect2(64, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shw27"]
+atlas = ExtResource("2_onfr4")
+region = Rect2(0, 34, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y05h"]
+atlas = ExtResource("2_onfr4")
+region = Rect2(32, 34, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85iq4"]
+atlas = ExtResource("2_onfr4")
+region = Rect2(64, 34, 32, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vagd2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kgw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2u5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfxoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shw27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y05h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85iq4")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}]
 
 [node name="PjSouris" type="Node2D"]
 script = ExtResource("1_bo6nk")
 light_intensity = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_hri5l")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vagd2")
+animation = &"hover"

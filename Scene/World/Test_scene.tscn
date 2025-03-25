@@ -17,9 +17,11 @@ script = ExtResource("1_8pw8x")
 [node name="Backgrounds" type="Node" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Backgrounds"]
+visible = false
 visibility_layer = 2
 
 [node name="Background" type="Sprite2D" parent="Backgrounds"]
+visible = false
 light_mask = 2
 position = Vector2(888, 8)
 texture = ExtResource("3_xmf5a")
@@ -31,10 +33,6 @@ position = Vector2(0, -80)
 
 [node name="TileMap2" parent="Tilemaps" instance=ExtResource("7_cgjkk")]
 position = Vector2(2558, -344)
-
-[node name="Symbole_3" parent="Tilemaps" instance=ExtResource("10_rvlqp")]
-position = Vector2(1234, -279)
-visible_only_with_light = true
 
 [node name="doooors" type="Node" parent="."]
 
@@ -48,6 +46,10 @@ door_id = "door_1_2"
 
 [node name="symbols" type="Node" parent="."]
 
+[node name="Symbole_3" parent="symbols" instance=ExtResource("10_rvlqp")]
+position = Vector2(1234, -279)
+visible_only_with_light = true
+
 [node name="Symbole_1" parent="symbols" instance=ExtResource("4_hlvfj")]
 position = Vector2(464, -218)
 visible_only_with_light = true
@@ -60,12 +62,12 @@ visible_only_with_light = true
 
 [node name="PanelCode" parent="Players" instance=ExtResource("7_68rmy")]
 light_mask = 0
-position = Vector2(1988, -244)
+position = Vector2(209, -168)
 associated_door_name = "door_1_1"
 metadata/associated_door = "Doors"
 
 [node name="Player" parent="Players" groups=["player"] instance=ExtResource("1_i3h60")]
-position = Vector2(314, -149)
+position = Vector2(75, -121)
 jumpHeight = 3.0
 
 [node name="PjSouris" parent="Players" groups=["player_mouse"] instance=ExtResource("5_ji8vu")]

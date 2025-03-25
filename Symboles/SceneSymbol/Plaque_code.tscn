@@ -1,32 +1,84 @@
-[gd_scene load_steps=13 format=3 uid="uid://1eau0lcfakeb"]
+[gd_scene load_steps=17 format=3 uid="uid://1eau0lcfakeb"]
 
 [ext_resource type="Script" path="res://Symboles/SceneSymbol/plaque_code.gd" id="1_1pt3d"]
 [ext_resource type="Texture2D" uid="uid://dvqkf7udbht22" path="res://Symboles/Assets/Plaque_Code.png" id="2_2guv7"]
 [ext_resource type="PackedScene" uid="uid://w2nbb5114tdv" path="res://Symboles/SceneSymbol/Symbole_1.tscn" id="2_sgpms"]
 [ext_resource type="PackedScene" uid="uid://iln3xbxv3by4" path="res://Symboles/SceneSymbol/Symbole_2.tscn" id="3_vqxah"]
 [ext_resource type="PackedScene" uid="uid://cq5kd2r8c7qrq" path="res://Symboles/SceneSymbol/Symbole_3.tscn" id="4_l5ofo"]
+[ext_resource type="Texture2D" uid="uid://iw4b7tapt1yc" path="res://Symboles/Assets/Bouton_A_0.png" id="6_4gy1y"]
+[ext_resource type="Texture2D" uid="uid://d2c6pom4xusb6" path="res://Symboles/Assets/Bouton_B_0.png" id="7_bahkj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evpl7"]
 atlas = ExtResource("2_2guv7")
 region = Rect2(0, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1skkj"]
-atlas = ExtResource("2_2guv7")
-region = Rect2(4, 36, 17, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr8jv"]
+atlas = ExtResource("6_4gy1y")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apoj8"]
+atlas = ExtResource("7_bahkj")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cli2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr8jv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apoj8")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5r56"]
 size = Vector2(14, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y42q0"]
-atlas = ExtResource("2_2guv7")
-region = Rect2(4, 36, 17, 25)
+[sub_resource type="SpriteFrames" id="SpriteFrames_wymmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr8jv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apoj8")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8rej"]
 size = Vector2(14, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vnlc0"]
-atlas = ExtResource("2_2guv7")
-region = Rect2(4, 36, 17, 25)
+[sub_resource type="SpriteFrames" id="SpriteFrames_yoqir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr8jv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icaym"]
 size = Vector2(14, 22)
@@ -46,8 +98,8 @@ texture = SubResource("AtlasTexture_evpl7")
 [node name="Slot1" type="Area2D" parent="."]
 position = Vector2(-19, 0)
 
-[node name="Symbol" type="Sprite2D" parent="Slot1"]
-texture = SubResource("AtlasTexture_1skkj")
+[node name="Symbol" type="AnimatedSprite2D" parent="Slot1"]
+sprite_frames = SubResource("SpriteFrames_5cli2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slot1"]
 visible = false
@@ -55,8 +107,8 @@ shape = SubResource("RectangleShape2D_n5r56")
 
 [node name="Slot2" type="Area2D" parent="."]
 
-[node name="Symbol" type="Sprite2D" parent="Slot2"]
-texture = SubResource("AtlasTexture_y42q0")
+[node name="Symbol" type="AnimatedSprite2D" parent="Slot2"]
+sprite_frames = SubResource("SpriteFrames_wymmp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slot2"]
 visible = false
@@ -65,8 +117,8 @@ shape = SubResource("RectangleShape2D_j8rej")
 [node name="Slot3" type="Area2D" parent="."]
 position = Vector2(18.6667, 0)
 
-[node name="Symbol" type="Sprite2D" parent="Slot3"]
-texture = SubResource("AtlasTexture_vnlc0")
+[node name="Symbol" type="AnimatedSprite2D" parent="Slot3"]
+sprite_frames = SubResource("SpriteFrames_yoqir")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slot3"]
 visible = false

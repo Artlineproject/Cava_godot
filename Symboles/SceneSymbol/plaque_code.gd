@@ -7,10 +7,13 @@ extends Node2D
 @export var circle_symbol_scene: PackedScene
 @export var triangle_symbol_scene: PackedScene
 @export var square_symbol_scene: PackedScene
+@export var animation_name_hover = "hover"  # Nom de l'animation hover (à personnaliser si différent)
+@export var animation_name_default = "default"  # Nom de l'animation par défaut
 
 var current_slots = ["", "", ""]
 var is_active = true
 var current_symbol_instances = [null, null, null]
+var hovering_slot_index = -1  # Stocke l'index du slot survolé (-1 = aucun)
 
 signal code_submitted(code)
 signal code_correct
@@ -24,6 +27,31 @@ func _ready():
 	# Initialiser les slots vides
 	for i in range(slots.size()):
 		_clear_slot(i)
+		
+		# Afficher des informations de débogage pour chaque slot
+		print("Configuration du slot " + str(i+1) + ":")
+		if slots[i].has_node("SlotSprite"):
+			var sprite = slots[i].get_node("SlotSprite")
+			print("  - SlotSprite trouvé")
+			
+			if sprite is AnimatedSprite2D:
+				print("  - C'est bien un AnimatedSprite2D")
+				
+				if sprite.sprite_frames:
+					print("  - SpriteFrames trouvé")
+					print("  - Animations disponibles: " + str(sprite.sprite_frames.get_animation_names()))
+					
+					if sprite.sprite_frames.has_animation(animation_name_default):
+						print("  - Animation '" + animation_name_default + "' trouvée")
+						sprite.play(animation_name_default)
+					else:
+						print("  - ERREUR: Animation '" + animation_name_default + "' non trouvée")
+				else:
+					print("  - ERREUR: Pas de SpriteFrames configuré")
+			else:
+				print("  - ERREUR: SlotSprite n'est pas un AnimatedSprite2D")
+		else:
+			print("  - ERREUR: Nœud SlotSprite non trouvé")
 	
 	# Connecter le bouton de soumission
 	submit_button.pressed.connect(_on_submit_pressed)
@@ -35,6 +63,100 @@ func _ready():
 	# Ajouter au groupe code_panels
 	add_to_group("code_panels")
 
+func _process(delta):
+	# Vérifier si la souris est au-dessus d'un slot
+	check_mouse_over_slots()
+
+# Fonction pour vérifier quel slot est survolé
+func check_mouse_over_slots():
+	var old_hovering_slot = hovering_slot_index
+	hovering_slot_index = -1
+	
+	# Récupérer la position de tous les joueurs souris
+	var mouse_players = get_tree().get_nodes_in_group(interactive_by_group)
+	for player in mouse_players:
+		var mouse_pos = player.global_position
+		
+		# Vérifier chaque slot
+		for i in range(slots.size()):
+			var distance = mouse_pos.distance_to(slots[i].global_position)
+			if distance < 50:  # Ajuster ce rayon selon vos besoins
+				hovering_slot_index = i
+				break
+		
+		if hovering_slot_index != -1:
+			break  # On a trouvé un slot survolé, inutile de continuer
+	
+	# Si le slot survolé a changé
+	if old_hovering_slot != hovering_slot_index:
+		# Désactiver l'effet de survol sur l'ancien slot
+		if old_hovering_slot != -1:
+			_set_slot_hover_state(old_hovering_slot, false)
+		
+		# Activer l'effet de survol sur le nouveau slot
+		if hovering_slot_index != -1:
+			_set_slot_hover_state(hovering_slot_index, true)
+
+# Fonction pour changer l'état de survol d'un slot
+func _set_slot_hover_state(slot_index, is_hovering):
+	var slot = slots[slot_index]
+	
+	# Vérifier si le slot a un nœud SlotSprite
+	if slot.has_node("SlotSprite"):
+		var sprite = slot.get_node("SlotSprite")
+		
+		# Vérifier si c'est un AnimatedSprite2D
+		if sprite is AnimatedSprite2D:
+			# Vérifier si le sprite a des frames
+			if sprite.sprite_frames:
+				# Vérifier si les animations existent
+				var has_hover = sprite.sprite_frames.has_animation(animation_name_hover)
+				var has_default = sprite.sprite_frames.has_animation(animation_name_default)
+				
+				if is_hovering and has_hover:
+					# Cas 1: État hover et animation hover disponible
+					sprite.play(animation_name_hover)
+					
+					# En mode debug, affichez un message la première fois
+					if sprite.animation != animation_name_hover:
+						print("Slot " + str(slot_index+1) + ": Activation animation hover")
+				elif has_default:
+					# Cas 2: État normal et animation default disponible
+					sprite.play(animation_name_default)
+					
+					# En mode debug, affichez un message la première fois
+					if sprite.animation != animation_name_default:
+						print("Slot " + str(slot_index+1) + ": Activation animation default")
+				else:
+					# Cas 3: Animations non disponibles, utiliser modulation
+					print("Animations manquantes pour slot " + str(slot_index+1) + ", utilisation de modulate")
+					slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
+			else:
+				# Cas 4: Pas de sprite frames, utiliser modulation
+				slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
+		else:
+			# Cas 5: Pas un AnimatedSprite2D, utiliser modulation
+			slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
+	else:
+		# Cas 6: Pas de SlotSprite, utiliser modulation sur le slot entier
+		slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
+	
+	# Jouer un son de survol si disponible
+	if is_hovering and slot.has_node("HoverSound"):
+		slot.get_node("HoverSound").play()
+
+# Fonction pour vérifier si la souris est au-dessus de n'importe quel slot
+func is_mouse_over_any_slot(mouse_position):
+	for slot in slots:
+		if mouse_position.distance_to(slot.global_position) < 50:
+			return true
+	return false
+
+# Fonction pour récupérer le slot survolé
+func get_hovering_slot_index():
+	return hovering_slot_index
+
+# Le reste du code reste inchangé
 func _on_slot_input(viewport, event, shape_idx, slot_index):
 	if not is_active or not event is InputEventMouseButton:
 		return
@@ -49,6 +171,10 @@ func _on_slot_input(viewport, event, shape_idx, slot_index):
 		
 		if mouse_in_group:
 			_cycle_symbol(slot_index)
+			
+			# Jouer un son de clic si disponible
+			if slots[slot_index].has_node("ClickSound"):
+				slots[slot_index].get_node("ClickSound").play()
 
 func _cycle_symbol(slot_index):
 	var current_index = -1
@@ -105,7 +231,6 @@ func _clear_slot(slot_index):
 		current_symbol_instances[slot_index].queue_free()
 		current_symbol_instances[slot_index] = null
 
-# Ajoutez cette fonction au script du panneau de code pour un meilleur diagnostic
 func _on_submit_pressed():
 	if not is_active:
 		return

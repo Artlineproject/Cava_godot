@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://w2nbb5114tdv"]
 
 [ext_resource type="Script" path="res://Symboles/SceneSymbol/Symbole_1.gd" id="1_2o77w"]
-[ext_resource type="Texture2D" uid="uid://dvqkf7udbht22" path="res://Symboles/Assets/Plaque_Code.png" id="2_fnmiv"]
+[ext_resource type="Texture2D" uid="uid://4pfnjwuyuwxp" path="res://Symboles/Assets/Codes.png" id="2_0burd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhu0e"]
-atlas = ExtResource("2_fnmiv")
-region = Rect2(74, 73, 11, 12)
+atlas = ExtResource("2_0burd")
+region = Rect2(32, 8, 32, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fribv"]
+size = Vector2(32, 20)
 
 [node name="Symbole_1" type="Area2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_2o77w")
 visible_only_with_light = false
 
@@ -17,4 +19,5 @@ visible_only_with_light = false
 texture = SubResource("AtlasTexture_bhu0e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_fribv")
