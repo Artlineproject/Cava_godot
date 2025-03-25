@@ -62,12 +62,12 @@ visible_only_with_light = true
 
 [node name="PanelCode" parent="Players" instance=ExtResource("7_68rmy")]
 light_mask = 0
-position = Vector2(209, -168)
+position = Vector2(2008, -264)
 associated_door_name = "door_1_1"
 metadata/associated_door = "Doors"
 
 [node name="Player" parent="Players" groups=["player"] instance=ExtResource("1_i3h60")]
-position = Vector2(75, -121)
+position = Vector2(1792, -56)
 jumpHeight = 3.0
 
 [node name="PjSouris" parent="Players" groups=["player_mouse"] instance=ExtResource("5_ji8vu")]

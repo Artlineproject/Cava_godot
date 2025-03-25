@@ -1,10 +1,7 @@
-[gd_scene load_steps=48 format=3 uid="uid://1eau0lcfakeb"]
+[gd_scene load_steps=47 format=3 uid="uid://1eau0lcfakeb"]
 
 [ext_resource type="Script" path="res://Symboles/SceneSymbol/plaque_code.gd" id="1_1pt3d"]
 [ext_resource type="Texture2D" uid="uid://dvqkf7udbht22" path="res://Symboles/Assets/Plaque_Code.png" id="2_2guv7"]
-[ext_resource type="PackedScene" uid="uid://w2nbb5114tdv" path="res://Symboles/SceneSymbol/Symbole_1.tscn" id="2_sgpms"]
-[ext_resource type="PackedScene" uid="uid://iln3xbxv3by4" path="res://Symboles/SceneSymbol/Symbole_2.tscn" id="3_vqxah"]
-[ext_resource type="PackedScene" uid="uid://cq5kd2r8c7qrq" path="res://Symboles/SceneSymbol/Symbole_3.tscn" id="4_l5ofo"]
 [ext_resource type="Texture2D" uid="uid://iw4b7tapt1yc" path="res://Symboles/Assets/Bouton_A_0.png" id="6_4gy1y"]
 [ext_resource type="Texture2D" uid="uid://d2c6pom4xusb6" path="res://Symboles/Assets/Bouton_B_0.png" id="7_bahkj"]
 [ext_resource type="Texture2D" uid="uid://df5hysapdjf" path="res://Symboles/Assets/Bouton_A/Bouton_A_1.png" id="8_iei7a"]
@@ -16,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cfwlyiv320upv" path="res://Symboles/Assets/Bouton_A/Bouton_A_4.png" id="14_cm0xy"]
 [ext_resource type="Texture2D" uid="uid://pux2xe5as63a" path="res://Symboles/Assets/Bouton_B/Bouton_B_4.png" id="15_bl8wb"]
 [ext_resource type="Texture2D" uid="uid://bqlfvjam2t5rm" path="res://Symboles/Assets/Bouton_A/Bouton_A_5.png" id="16_hs8am"]
+[ext_resource type="Texture2D" uid="uid://cgxfi74j8d5t5" path="res://Symboles/Assets/Bouton_B/Bouton_B_0.png" id="17_encdu"]
 [ext_resource type="Texture2D" uid="uid://co1s816of1ck7" path="res://Symboles/Assets/Bouton_B/Bouton_B_5.png" id="17_ksvpg"]
 [ext_resource type="Texture2D" uid="uid://ch7cc75coke4r" path="res://Symboles/Assets/Bouton_A/Bouton_A_6.png" id="18_2f5fq"]
 [ext_resource type="Texture2D" uid="uid://cgi30hbsr3lfu" path="res://Symboles/Assets/Bouton_B/Bouton_B_6.png" id="19_aioh0"]
@@ -38,7 +36,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eyn8y")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -65,7 +63,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_35vyy")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -73,7 +71,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8j3xs")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -92,7 +90,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpd4j")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -100,7 +98,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_afbew")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -119,7 +117,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1vg4v")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -127,7 +125,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ju241")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -146,7 +144,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rjnow")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -154,7 +152,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jvrdp")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -173,7 +171,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5dnmd")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -181,7 +179,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7iuku")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -200,7 +198,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hc6qh")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -208,7 +206,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mhnv0")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -234,7 +232,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_apoj8")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -242,17 +240,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8rej"]
 size = Vector2(14, 22)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbocl"]
+atlas = ExtResource("17_encdu")
+region = Rect2(0, 0, 17, 25)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yoqir"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mr8jv")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbocl")
+}],
 "loop": true,
 "name": &"hover",
 "speed": 5.0
@@ -262,11 +267,9 @@ animations = [{
 size = Vector2(14, 22)
 
 [node name="PanelCode" type="Node2D"]
+light_mask = 2
 scale = Vector2(2, 2)
 script = ExtResource("1_1pt3d")
-circle_symbol_scene = ExtResource("3_vqxah")
-triangle_symbol_scene = ExtResource("2_sgpms")
-square_symbol_scene = ExtResource("4_l5ofo")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
@@ -276,25 +279,31 @@ texture = SubResource("AtlasTexture_evpl7")
 [node name="Slot1" type="Area2D" parent="."]
 position = Vector2(-19, 0)
 
-[node name="Symbol" type="AnimatedSprite2D" parent="Slot1"]
+[node name="SlotSprite" type="AnimatedSprite2D" parent="Slot1"]
 sprite_frames = SubResource("SpriteFrames_32j7x")
 
 [node name="Symbol_trait" type="AnimatedSprite2D" parent="Slot1"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_mkc5m")
 
 [node name="Symbol_chapeau" type="AnimatedSprite2D" parent="Slot1"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_jio5c")
 
 [node name="Symbol_cercle_bas" type="AnimatedSprite2D" parent="Slot1"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_4qak0")
 
 [node name="Symbol_cercle_haut" type="AnimatedSprite2D" parent="Slot1"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_nm7ak")
 
 [node name="Symbol_L" type="AnimatedSprite2D" parent="Slot1"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_voaps")
 
 [node name="Symbol_T" type="AnimatedSprite2D" parent="Slot1"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_ahgv3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slot1"]
@@ -303,22 +312,70 @@ shape = SubResource("RectangleShape2D_n5r56")
 
 [node name="Slot2" type="Area2D" parent="."]
 
-[node name="Symbol" type="AnimatedSprite2D" parent="Slot2"]
+[node name="SlotSprite" type="AnimatedSprite2D" parent="Slot2"]
 sprite_frames = SubResource("SpriteFrames_wymmp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slot2"]
 visible = false
 shape = SubResource("RectangleShape2D_j8rej")
 
+[node name="Symbol_trait" type="AnimatedSprite2D" parent="Slot2"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_mkc5m")
+
+[node name="Symbol_chapeau" type="AnimatedSprite2D" parent="Slot2"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_jio5c")
+
+[node name="Symbol_cercle_bas" type="AnimatedSprite2D" parent="Slot2"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_4qak0")
+
+[node name="Symbol_cercle_haut" type="AnimatedSprite2D" parent="Slot2"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_nm7ak")
+
+[node name="Symbol_L" type="AnimatedSprite2D" parent="Slot2"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_voaps")
+
+[node name="Symbol_T" type="AnimatedSprite2D" parent="Slot2"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ahgv3")
+
 [node name="Slot3" type="Area2D" parent="."]
 position = Vector2(18.6667, 0)
 
-[node name="Symbol" type="AnimatedSprite2D" parent="Slot3"]
+[node name="SlotSprite" type="AnimatedSprite2D" parent="Slot3"]
 sprite_frames = SubResource("SpriteFrames_yoqir")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slot3"]
 visible = false
 shape = SubResource("RectangleShape2D_icaym")
+
+[node name="Symbol_trait" type="AnimatedSprite2D" parent="Slot3"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_mkc5m")
+
+[node name="Symbol_chapeau" type="AnimatedSprite2D" parent="Slot3"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_jio5c")
+
+[node name="Symbol_cercle_bas" type="AnimatedSprite2D" parent="Slot3"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_4qak0")
+
+[node name="Symbol_cercle_haut" type="AnimatedSprite2D" parent="Slot3"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_nm7ak")
+
+[node name="Symbol_L" type="AnimatedSprite2D" parent="Slot3"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_voaps")
+
+[node name="Symbol_T" type="AnimatedSprite2D" parent="Slot3"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ahgv3")
 
 [node name="SubmitButton" type="Button" parent="."]
 offset_left = -4.0

@@ -1,12 +1,12 @@
 extends Node
 # Gestionnaire de symboles - autoload singleton
 
-# Dictionnaire des codes de porte
+# Dictionnaire des codes de porte - Mis à jour avec les nouveaux symboles
 var door_codes = {
-	"door_1_1": ["circle", "triangle", "square"],
-	"door_1_2": ["triangle", "circle", "triangle"],
-	"door_1_3": ["square", "triangle", "circle"],
-	"door_1_4": ["triangle", "square", "square"]
+	"door_1_1": ["trait", "chapeau", "cercle_bas"],
+	"door_1_2": ["T", "cercle_haut", "L"],
+	"door_1_3": ["cercle_bas", "trait", "chapeau"],
+	"door_1_4": ["L", "T", "cercle_haut"]
 }
 
 # Liste des symboles découverts dans la zone actuelle
@@ -70,10 +70,10 @@ func get_current_door_code():
 
 # Extraire le type de symbole à partir de son ID complet
 func get_symbol_type(symbol_id):
-	# Format attendu: "symbole_circle_1", "symbole_triangle_2", etc.
+	# Format attendu: "symbole_trait_1", "symbole_chapeau_2", etc.
 	var parts = symbol_id.split("_")
 	if parts.size() >= 2:
-		return parts[1]  # Retourne "circle", "triangle", etc.
+		return parts[1]  # Retourne "trait", "chapeau", etc.
 	return symbol_id
 
 # Vérifier si un type spécifique de symbole a été découvert
@@ -83,7 +83,7 @@ func has_discovered_symbol_type(symbol_type):
 			return true
 	return false
 
-# Modifier cette fonction dans votre SymbolManager
+# Vérifier un code entré
 func verify_code(entered_code):
 	print("SymbolManager: Vérification du code")
 	print("Code entré: " + str(entered_code))
@@ -103,6 +103,7 @@ func verify_code(entered_code):
 	
 	print("Les codes correspondent!")
 	return true
+
 # Ajouter un code personnalisé pour une porte
 func add_door_code(door_id, symbols):
 	door_codes[door_id] = symbols.duplicate()
