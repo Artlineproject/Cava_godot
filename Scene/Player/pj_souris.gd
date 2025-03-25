@@ -14,12 +14,12 @@ func _ready():
 	var light = get_node_or_null("PointLight2D")
 	if not light:
 		light = PointLight2D.new()
-		light.texture = preload("res://Scene/Player/Assets/PlayerPointLight.png")  # Ajustez le chemin
+		light.texture = preload("res://Scene/Player/Assets/Halo_PJ_souris.png")  # Ajustez le chemin
 		add_child(light)
 	
 	# Configurer la lumière
 	light.enabled = true
-	light.energy = 0.7  # Intensité modérée
+	light.energy = 1  # Intensité modérée
 	light.texture_scale = light_radius / 128.0  # Adapter au rayon de détection
 	light.range_item_cull_mask = 1
 

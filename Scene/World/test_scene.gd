@@ -60,13 +60,13 @@ func setup_player_lights():
 		# Si non, créer un nouveau
 		if not light:
 			light = PointLight2D.new()
-			light.texture = preload("res://Scene/Player/Assets/PlayerPointLight.png")  # Ajustez le chemin
+			light.texture = preload("res://Scene/Player/Assets/Halo_PJ_clavier.png")  # Ajustez le chemin
 			player_keyboard.add_child(light)
 		
 		# Configurer la lumière
 		light.enabled = true
-		light.energy = 0.6  # Intensité modérée
-		light.texture_scale = 0.8  # Rayon modéré
+		light.energy = 1  # Intensité modérée
+		light.texture_scale = 1  # Rayon modéré
 		light.range_item_cull_mask = 1
 
 func configure_point_light(light):
