@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://1eau0lcfakeb"]
+[gd_scene load_steps=82 format=3 uid="uid://1eau0lcfakeb"]
 
 [ext_resource type="Script" path="res://Symboles/SceneSymbol/plaque_code.gd" id="1_1pt3d"]
 [ext_resource type="Texture2D" uid="uid://dvqkf7udbht22" path="res://Symboles/Assets/Plaque_Code.png" id="2_2guv7"]
@@ -44,7 +44,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_apoj8")
 }],
-"loop": true,
+"loop": false,
 "name": &"hover",
 "speed": 5.0
 }]
@@ -65,7 +65,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -73,7 +73,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hover",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpd4j"]
@@ -92,7 +92,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -100,7 +100,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hover",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vg4v"]
@@ -119,7 +119,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -127,7 +127,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hover",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rjnow"]
@@ -146,7 +146,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -154,7 +154,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hover",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5dnmd"]
@@ -173,7 +173,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -181,7 +181,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hover",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hc6qh"]
@@ -200,7 +200,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -208,7 +208,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hover",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5r56"]
@@ -224,7 +224,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mr8jv")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -240,6 +240,168 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8rej"]
 size = Vector2(14, 22)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iekfo"]
+atlas = ExtResource("8_iei7a")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isqf6"]
+atlas = ExtResource("9_r7t8h")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jaisy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iekfo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isqf6")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyeq7"]
+atlas = ExtResource("10_h1h07")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjpjb"]
+atlas = ExtResource("11_4046t")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_byv00"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyeq7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjpjb")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocrdi"]
+atlas = ExtResource("12_7jtfd")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpo7p"]
+atlas = ExtResource("13_whboq")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ait6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocrdi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpo7p")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytp1y"]
+atlas = ExtResource("14_cm0xy")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7g70"]
+atlas = ExtResource("15_bl8wb")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rthy2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytp1y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7g70")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2hhh"]
+atlas = ExtResource("16_hs8am")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff7gm"]
+atlas = ExtResource("17_ksvpg")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g0gsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2hhh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff7gm")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvtxb"]
+atlas = ExtResource("18_2f5fq")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7m1h"]
+atlas = ExtResource("19_aioh0")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8lqna"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvtxb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7m1h")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qbocl"]
 atlas = ExtResource("17_encdu")
 region = Rect2(0, 0, 17, 25)
@@ -252,7 +414,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -266,7 +428,165 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icaym"]
 size = Vector2(14, 22)
 
-[node name="PanelCode" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ika5"]
+atlas = ExtResource("9_r7t8h")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f73qp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35vyy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ika5")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w2gp"]
+atlas = ExtResource("10_h1h07")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so5kc"]
+atlas = ExtResource("11_4046t")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ejt2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w2gp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so5kc")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txgol"]
+atlas = ExtResource("12_7jtfd")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61744"]
+atlas = ExtResource("13_whboq")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6kha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txgol")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61744")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bqlm"]
+atlas = ExtResource("14_cm0xy")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul1qw"]
+atlas = ExtResource("15_bl8wb")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ftdd6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bqlm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul1qw")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l68tp"]
+atlas = ExtResource("16_hs8am")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwdt3"]
+atlas = ExtResource("17_ksvpg")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3s0hq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l68tp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwdt3")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07dsr"]
+atlas = ExtResource("18_2f5fq")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6lcy"]
+atlas = ExtResource("19_aioh0")
+region = Rect2(0, 0, 17, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wx280"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07dsr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6lcy")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 10.0
+}]
+
+[node name="PanelCode" type="Node2D" groups=["code_panels"]]
 light_mask = 2
 scale = Vector2(2, 2)
 script = ExtResource("1_1pt3d")
@@ -281,30 +601,29 @@ position = Vector2(-19, 0)
 
 [node name="SlotSprite" type="AnimatedSprite2D" parent="Slot1"]
 sprite_frames = SubResource("SpriteFrames_32j7x")
+animation = &"hover"
 
 [node name="Symbol_trait" type="AnimatedSprite2D" parent="Slot1"]
-visible = false
 sprite_frames = SubResource("SpriteFrames_mkc5m")
+autoplay = "default"
 
 [node name="Symbol_chapeau" type="AnimatedSprite2D" parent="Slot1"]
-visible = false
 sprite_frames = SubResource("SpriteFrames_jio5c")
+animation = &"hover"
 
 [node name="Symbol_cercle_bas" type="AnimatedSprite2D" parent="Slot1"]
-visible = false
 sprite_frames = SubResource("SpriteFrames_4qak0")
+animation = &"hover"
 
 [node name="Symbol_cercle_haut" type="AnimatedSprite2D" parent="Slot1"]
-visible = false
 sprite_frames = SubResource("SpriteFrames_nm7ak")
 
 [node name="Symbol_L" type="AnimatedSprite2D" parent="Slot1"]
-visible = false
 sprite_frames = SubResource("SpriteFrames_voaps")
 
 [node name="Symbol_T" type="AnimatedSprite2D" parent="Slot1"]
-visible = false
 sprite_frames = SubResource("SpriteFrames_ahgv3")
+animation = &"hover"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slot1"]
 visible = false
@@ -320,28 +639,28 @@ visible = false
 shape = SubResource("RectangleShape2D_j8rej")
 
 [node name="Symbol_trait" type="AnimatedSprite2D" parent="Slot2"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_mkc5m")
+sprite_frames = SubResource("SpriteFrames_jaisy")
+animation = &"hover"
 
 [node name="Symbol_chapeau" type="AnimatedSprite2D" parent="Slot2"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_jio5c")
+sprite_frames = SubResource("SpriteFrames_byv00")
+animation = &"hover"
 
 [node name="Symbol_cercle_bas" type="AnimatedSprite2D" parent="Slot2"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_4qak0")
+sprite_frames = SubResource("SpriteFrames_ait6w")
+animation = &"hover"
 
 [node name="Symbol_cercle_haut" type="AnimatedSprite2D" parent="Slot2"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_nm7ak")
+sprite_frames = SubResource("SpriteFrames_rthy2")
+animation = &"hover"
 
 [node name="Symbol_L" type="AnimatedSprite2D" parent="Slot2"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_voaps")
+sprite_frames = SubResource("SpriteFrames_g0gsy")
+animation = &"hover"
 
 [node name="Symbol_T" type="AnimatedSprite2D" parent="Slot2"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_ahgv3")
+sprite_frames = SubResource("SpriteFrames_8lqna")
+animation = &"hover"
 
 [node name="Slot3" type="Area2D" parent="."]
 position = Vector2(18.6667, 0)
@@ -354,28 +673,28 @@ visible = false
 shape = SubResource("RectangleShape2D_icaym")
 
 [node name="Symbol_trait" type="AnimatedSprite2D" parent="Slot3"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_mkc5m")
+sprite_frames = SubResource("SpriteFrames_f73qp")
+animation = &"hover"
 
 [node name="Symbol_chapeau" type="AnimatedSprite2D" parent="Slot3"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_jio5c")
+sprite_frames = SubResource("SpriteFrames_ejt2f")
+animation = &"hover"
 
 [node name="Symbol_cercle_bas" type="AnimatedSprite2D" parent="Slot3"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_4qak0")
+sprite_frames = SubResource("SpriteFrames_n6kha")
+animation = &"hover"
 
 [node name="Symbol_cercle_haut" type="AnimatedSprite2D" parent="Slot3"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_nm7ak")
+sprite_frames = SubResource("SpriteFrames_ftdd6")
+animation = &"hover"
 
 [node name="Symbol_L" type="AnimatedSprite2D" parent="Slot3"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_voaps")
+sprite_frames = SubResource("SpriteFrames_3s0hq")
+animation = &"hover"
 
 [node name="Symbol_T" type="AnimatedSprite2D" parent="Slot3"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_ahgv3")
+sprite_frames = SubResource("SpriteFrames_wx280")
+animation = &"hover"
 
 [node name="SubmitButton" type="Button" parent="."]
 offset_left = -4.0

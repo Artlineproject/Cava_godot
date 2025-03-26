@@ -3,19 +3,19 @@ extends Node2D
 
 @export var available_symbols = ["trait", "chapeau", "cercle_bas", "cercle_haut", "L", "T"]
 @export var interactive_by_group = "player_mouse"
-@export var associated_door_name = ""  # Nom de la porte associée
-@export var animation_name_hover = "hover"  # Nom de l'animation hover (à personnaliser si différent)
-@export var animation_name_default = "default"  # Nom de l'animation par défaut
+@export var associated_door_name = ""
+@export var animation_name_hover = "hover"
+@export var animation_name_default = "default"
 
-# Variables pour la détection de survol améliorée
+# Variables pour la détection de survol
+var hover_check_interval = 0.05
 var last_hover_check_time = 0
-var hover_check_interval = 0.05  # Vérifier toutes les 50ms
 var last_mouse_position = Vector2.ZERO
-var hover_detection_radius = 70  # Rayon de détection plus large
+var hover_detection_radius = 30
+var hovering_slot_index = -1
 
 var current_slots = ["", "", ""]
 var is_active = true
-var hovering_slot_index = -1  # Stocke l'index du slot survolé (-1 = aucun)
 
 signal code_submitted(code)
 signal code_correct
@@ -26,34 +26,11 @@ signal slot_changed(slot_index, symbol)
 @onready var submit_button = $SubmitButton
 
 func _ready():
-	# Initialiser les slots vides
+	print("=== Initialisation du panneau de code ===")
+	
+	# Initialiser les slots
 	for i in range(slots.size()):
 		_initialize_slot(i)
-		
-		# Afficher des informations de débogage pour chaque slot
-		print("Configuration du slot " + str(i+1) + ":")
-		if slots[i].has_node("SlotSprite"):
-			var sprite = slots[i].get_node("SlotSprite")
-			print("  - SlotSprite trouvé")
-			
-			if sprite is AnimatedSprite2D:
-				print("  - C'est bien un AnimatedSprite2D")
-				
-				if sprite.sprite_frames:
-					print("  - SpriteFrames trouvé")
-					print("  - Animations disponibles: " + str(sprite.sprite_frames.get_animation_names()))
-					
-					if sprite.sprite_frames.has_animation(animation_name_default):
-						print("  - Animation '" + animation_name_default + "' trouvée")
-						sprite.play(animation_name_default)
-					else:
-						print("  - ERREUR: Animation '" + animation_name_default + "' non trouvée")
-				else:
-					print("  - ERREUR: Pas de SpriteFrames configuré")
-			else:
-				print("  - ERREUR: SlotSprite n'est pas un AnimatedSprite2D")
-		else:
-			print("  - ERREUR: Nœud SlotSprite non trouvé")
 	
 	# Connecter le bouton de soumission
 	submit_button.pressed.connect(_on_submit_pressed)
@@ -70,15 +47,15 @@ func _ready():
 	add_to_group("code_panels")
 
 func _process(delta):
-	# N'exécuter la vérification de survol qu'à intervalles définis
+	# Vérification de survol à intervalles réguliers
 	last_hover_check_time += delta
 	if last_hover_check_time >= hover_check_interval:
 		last_hover_check_time = 0
 		check_mouse_over_slots()
 
-# Fonction améliorée pour vérifier quel slot est survolé
+# Fonction pour vérifier quel slot est survolé
 func check_mouse_over_slots():
-	# Récupérer la position du PJ souris
+	# Récupérer la position du joueur souris
 	var mouse_players = get_tree().get_nodes_in_group(interactive_by_group)
 	if mouse_players.size() == 0:
 		return
@@ -106,6 +83,7 @@ func check_mouse_over_slots():
 	if closest_slot != hovering_slot_index:
 		# Désactiver l'effet de survol sur l'ancien slot
 		if hovering_slot_index != -1:
+			print("Fin du survol du slot " + str(hovering_slot_index + 1))
 			_set_slot_hover_state(hovering_slot_index, false)
 		
 		# Activer l'effet de survol sur le nouveau slot
@@ -114,64 +92,56 @@ func check_mouse_over_slots():
 			_set_slot_hover_state(hovering_slot_index, true)
 			print("Survol du slot " + str(hovering_slot_index + 1) + " détecté")
 
-# Fonction améliorée pour changer l'état de survol d'un slot
-func _set_slot_hover_state(slot_index, is_hovering):
-	var slot = slots[slot_index]
-	
-	# Vérifier si le slot a un nœud SlotSprite
-	if slot.has_node("SlotSprite"):
-		var sprite = slot.get_node("SlotSprite")
-		
-		# Vérifier si c'est un AnimatedSprite2D
-		if sprite is AnimatedSprite2D:
-			# Éviter de jouer l'animation si elle est déjà en cours
-			var current_anim = sprite.animation
-			var target_anim = animation_name_hover if is_hovering else animation_name_default
-			
-			if current_anim != target_anim:
-				# Vérifier si le sprite a des frames
-				if sprite.sprite_frames:
-					# Vérifier si les animations existent
-					var has_target_anim = sprite.sprite_frames.has_animation(target_anim)
-					
-					if has_target_anim:
-						sprite.play(target_anim)
-						print("Slot " + str(slot_index+1) + ": " + 
-							("Activation" if is_hovering else "Désactivation") + 
-							" animation " + target_anim)
-					else:
-						# Animations non disponibles, utiliser modulation
-						slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
-				else:
-					# Pas de sprite frames, utiliser modulation
-					slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
-		else:
-			# Pas un AnimatedSprite2D, utiliser modulation
-			slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
-	else:
-		# Pas de SlotSprite, utiliser modulation sur le slot entier
-		slot.modulate = Color(1.2, 1.2, 1.2) if is_hovering else Color(1.0, 1.0, 1.0)
-	
-	# Jouer un son de survol si disponible et si on entre dans l'état hover
-	if is_hovering and slot.has_node("HoverSound"):
-		slot.get_node("HoverSound").play()
-
-# Fonction pour vérifier si la souris est au-dessus de n'importe quel slot
-func is_mouse_over_any_slot(mouse_position):
-	for slot in slots:
-		if mouse_position.distance_to(slot.global_position) < 50:
+# Forcer une animation spécifique sur un nœud
+func _force_animation(sprite_node, anim_name):
+	if sprite_node is AnimatedSprite2D:
+		if sprite_node.sprite_frames and sprite_node.sprite_frames.has_animation(anim_name):
+			sprite_node.stop()
+			sprite_node.animation = anim_name
+			sprite_node.frame = 0
+			sprite_node.play()
 			return true
 	return false
 
-# Fonction pour récupérer le slot survolé
-func get_hovering_slot_index():
-	return hovering_slot_index
+# Fonction pour changer l'état de survol d'un slot
+func _set_slot_hover_state(slot_index, is_hovering):
+	var slot = slots[slot_index]
+	var anim_name = animation_name_hover if is_hovering else animation_name_default
+	
+	print("Slot " + str(slot_index + 1) + ": " + ("Activation" if is_hovering else "Désactivation") + " animation " + anim_name)
+	
+	# 1. Animer le SlotSprite (la base)
+	if slot.has_node("SlotSprite"):
+		var success = _force_animation(slot.get_node("SlotSprite"), anim_name)
+		if success:
+			print("  - Animation " + anim_name + " lancée sur SlotSprite")
+	
+	# 2. Animer le symbole actuellement visible
+	var current_symbol = current_slots[slot_index]
+	if current_symbol != "":
+		var symbol_node_name = "Symbol_" + current_symbol
+		if slot.has_node(symbol_node_name):
+			var symbol_node = slot.get_node(symbol_node_name)
+			
+			# Vérifier si le symbole est un AnimatedSprite2D
+			if symbol_node is AnimatedSprite2D:
+				var success = _force_animation(symbol_node, anim_name)
+				if success:
+					print("  - Animation " + anim_name + " lancée sur symbole " + current_symbol)
+				else:
+					print("  - Le symbole " + current_symbol + " n'a pas d'animation " + anim_name)
+			else:
+				print("  - Le symbole " + current_symbol + " n'est pas un AnimatedSprite2D")
+	
+	# Jouer un son de survol si disponible
+	if is_hovering and slot.has_node("HoverSound"):
+		slot.get_node("HoverSound").play()
 
 # Initialiser un slot
 func _initialize_slot(slot_index):
-	# Vérifier que les nœuds de symbole existent
 	var slot = slots[slot_index]
 	
+	# Vérifier les nœuds de symbole
 	for symbol in available_symbols:
 		var symbol_node_name = "Symbol_" + symbol
 		if not slot.has_node(symbol_node_name):
@@ -202,37 +172,18 @@ func _show_selected_symbol(slot_index):
 	if selected_symbol != "":
 		var symbol_node_name = "Symbol_" + selected_symbol
 		if slot.has_node(symbol_node_name):
-			slot.get_node(symbol_node_name).visible = true
-		else:
-			print("ERREUR: Symbole " + symbol_node_name + " introuvable dans le slot " + str(slot_index+1))
-
-# Version alternative avec transition (optionnelle)
-func _show_selected_symbol_with_transition(slot_index):
-	var slot = slots[slot_index]
-	var selected_symbol = current_slots[slot_index]
-	
-	# Fade out tous les symboles
-	for symbol in available_symbols:
-		var symbol_node_name = "Symbol_" + symbol
-		if slot.has_node(symbol_node_name):
-			var symbol_node = slot.get_node(symbol_node_name)
-			if symbol_node.visible:
-				# Créer un tween pour le fade out
-				var tween = create_tween()
-				tween.tween_property(symbol_node, "modulate:a", 0.0, 0.1)
-				tween.tween_callback(func(): symbol_node.visible = false)
-	
-	# Montrer et fade in le symbole sélectionné
-	if selected_symbol != "":
-		var symbol_node_name = "Symbol_" + selected_symbol
-		if slot.has_node(symbol_node_name):
 			var symbol_node = slot.get_node(symbol_node_name)
 			symbol_node.visible = true
-			symbol_node.modulate.a = 0.0
 			
-			# Créer un tween pour le fade in
-			var tween = create_tween()
-			tween.tween_property(symbol_node, "modulate:a", 1.0, 0.1)
+			# Si ce slot est actuellement survolé, jouer l'animation hover
+			if slot_index == hovering_slot_index:
+				if symbol_node is AnimatedSprite2D:
+					_force_animation(symbol_node, animation_name_hover)
+			else:
+				if symbol_node is AnimatedSprite2D:
+					_force_animation(symbol_node, animation_name_default)
+		else:
+			print("ERREUR: Symbole " + symbol_node_name + " introuvable dans le slot " + str(slot_index+1))
 
 # Gérer l'input sur un slot
 func _on_slot_input(viewport, event, shape_idx, slot_index):
@@ -270,8 +221,6 @@ func _cycle_symbol(slot_index):
 	
 	# Mettre à jour l'affichage
 	_show_selected_symbol(slot_index)
-	# Si vous préférez la version avec transition, utilisez:
-	# _show_selected_symbol_with_transition(slot_index)
 	
 	# Émettre le signal
 	slot_changed.emit(slot_index, current_slots[slot_index])
@@ -340,6 +289,12 @@ func reset():
 	for i in range(current_slots.size()):
 		current_slots[i] = ""
 		_hide_all_symbols(i)
+		
+		# Réinitialiser l'animation de la plaque
+		if slots[i].has_node("SlotSprite"):
+			var sprite = slots[i].get_node("SlotSprite")
+			if sprite is AnimatedSprite2D:
+				_force_animation(sprite, animation_name_default)
 
 # Désactiver le panneau
 func disable():
