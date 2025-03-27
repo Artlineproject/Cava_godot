@@ -42,7 +42,6 @@ destination_door_path = NodePath("../Doors2")
 
 [node name="Doors2" parent="doooors" instance=ExtResource("6_cft1b")]
 position = Vector2(2700, -365)
-door_id = "door_1_2"
 
 [node name="symbols" type="Node" parent="."]
 

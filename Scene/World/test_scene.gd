@@ -11,6 +11,7 @@ extends Node2D
 @onready var code_panels = get_tree().get_nodes_in_group("PanelCode")
 
 func _ready():
+	
 	# Configuration de l'éclairage
 	setup_light_masks()
 	

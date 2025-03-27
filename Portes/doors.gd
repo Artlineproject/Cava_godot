@@ -11,6 +11,7 @@ extends Node2D
 var player_in_range = false
 var destination_door = null
 var teleporting = false
+var player_controls_disabled = false  # Variable pour suivre l'état des contrôles du joueur
 
 # Références aux nœuds
 @onready var sprite = $DoorSprite
@@ -22,6 +23,7 @@ signal door_opened
 signal door_closed
 signal teleport_started
 signal teleport_completed
+signal controls_disabled_changed(disabled)  # Nouveau signal pour désactiver les contrôles du joueur
 
 func _ready():
 	# Ajouter cette porte au groupe "doors"
@@ -61,10 +63,17 @@ func _ready():
 
 func _process(delta):
 	# Vérifier si le joueur est dans la zone et appuie sur "ui_down" (S ou flèche bas)
-	if player_in_range and is_open and not teleporting:
+	if player_in_range and not player_controls_disabled:
 		if Input.is_action_just_pressed("ui_down"):  # "ui_down" est mappé à S et flèche bas par défaut
-			print("Touche S détectée - tentative de téléportation")
-			_teleport_player()
+			print("Touche S détectée - tentative d'utilisation de la porte")
+			if is_open:
+				# Si la porte est ouverte, téléporter le joueur
+				_teleport_player()
+			elif requires_code and not SymbolManager.check_door_symbols(door_id):
+				# Jouer l'animation shake seulement si la porte est fermée, 
+				# qu'elle nécessite un code et que le code n'a pas été entré correctement
+				_shake_door()
+				print("La porte est verrouillée - code requis")
 
 # Téléporter le joueur vers la porte de destination
 func _teleport_player():
@@ -85,9 +94,8 @@ func _teleport_player():
 			break
 	
 	if player:
-		# Animation de fermeture de cette porte
-		sprite.play("close")
-		await sprite.animation_finished
+		# Désactiver les contrôles du joueur
+		_set_player_controls_disabled(true)
 		
 		# Créer un effet de fondu au noir
 		var transition_rect = ColorRect.new()
@@ -130,11 +138,66 @@ func _teleport_player():
 		sprite.play("idle_closed")
 		destination_door.sprite.play("idle_open")
 		
+		# Réactiver les contrôles du joueur
+		_set_player_controls_disabled(false)
+		
 		teleporting = false
 		teleport_completed.emit()
 	else:
 		print("Aucun joueur trouvé dans la zone de détection!")
 		teleporting = false
+
+# Nouvelle fonction pour faire trembler la porte
+func _shake_door():
+	print("Fonction shake_door() appelée sur la porte " + door_id)
+	
+	if sprite:
+		# Pour AnimatedSprite2D
+		if sprite is AnimatedSprite2D:
+			if sprite.sprite_frames.has_animation("shake"):
+				print("Animation 'shake' trouvée, lecture...")
+				
+				# Désactiver les contrôles du joueur pendant l'animation
+				_set_player_controls_disabled(true)
+				
+				sprite.play("shake")
+				
+				# Attendre la fin de l'animation
+				await sprite.animation_finished
+				
+				print("Animation shake terminée, retour à idle_closed")
+				sprite.play("idle_closed")
+				
+				# Réactiver les contrôles du joueur
+				_set_player_controls_disabled(false)
+			else:
+				print("ERREUR: Animation 'shake' manquante!")
+				print("Animations disponibles: " + str(sprite.sprite_frames.get_animation_names()))
+		# Pour AnimationPlayer
+		elif sprite is AnimationPlayer:
+			if sprite.has_animation("shake"):
+				print("Animation 'shake' trouvée, lecture...")
+				
+				# Désactiver les contrôles du joueur pendant l'animation
+				_set_player_controls_disabled(true)
+				
+				sprite.play("shake")
+				
+				# Attendre la fin de l'animation
+				await sprite.animation_finished
+				
+				print("Animation shake terminée, retour à idle_closed")
+				sprite.play("idle_closed")
+				
+				# Réactiver les contrôles du joueur
+				_set_player_controls_disabled(false)
+			else:
+				print("ERREUR: Animation 'shake' manquante!")
+				print("Animations disponibles: " + str(sprite.get_animation_list()))
+		else:
+			print("ERREUR: Type de nœud sprite non pris en charge!")
+	else:
+		print("Le nœud sprite est null!")
 
 # Quand le joueur entre dans la zone de détection
 func _on_detection_area_body_entered(body):
@@ -161,6 +224,10 @@ func open():
 			if sprite is AnimatedSprite2D:
 				if sprite.sprite_frames.has_animation("open"):
 					print("Animation 'open' trouvée, lecture...")
+					
+					# Désactiver les contrôles du joueur pendant l'animation
+					_set_player_controls_disabled(true)
+					
 					sprite.play("open")
 					
 					# Attendre la fin de l'animation
@@ -168,6 +235,9 @@ func open():
 					
 					print("Animation terminée, passage à idle_open")
 					sprite.play("idle_open")
+					
+					# Réactiver les contrôles du joueur
+					_set_player_controls_disabled(false)
 				else:
 					print("ERREUR: Animation 'open' manquante!")
 					print("Animations disponibles: " + str(sprite.sprite_frames.get_animation_names()))
@@ -175,6 +245,10 @@ func open():
 			elif sprite is AnimationPlayer:
 				if sprite.has_animation("open"):
 					print("Animation 'open' trouvée, lecture...")
+					
+					# Désactiver les contrôles du joueur pendant l'animation
+					_set_player_controls_disabled(true)
+					
 					sprite.play("open")
 					
 					# Attendre la fin de l'animation
@@ -182,6 +256,9 @@ func open():
 					
 					print("Animation terminée, passage à idle_open")
 					sprite.play("idle_open")
+					
+					# Réactiver les contrôles du joueur
+					_set_player_controls_disabled(false)
 				else:
 					print("ERREUR: Animation 'open' manquante!")
 					print("Animations disponibles: " + str(sprite.get_animation_list()))
@@ -195,25 +272,17 @@ func open():
 	else:
 		print("La porte est déjà ouverte!")
 
-# Fermer la porte
-func close():
-	if is_open:
-		is_open = false
-		
-		if sprite:
-			# Pour AnimatedSprite2D
-			if sprite is AnimatedSprite2D:
-				sprite.play("close")
-				await sprite.animation_finished
-				sprite.play("idle_closed")
-			# Pour AnimationPlayer
-			elif sprite is AnimationPlayer:
-				sprite.play("close")
-				await sprite.animation_finished
-				sprite.play("idle_closed")
-		
-		door_closed.emit()
-		print("Porte " + door_id + " fermée")
+# Fonction pour définir l'état des contrôles du joueur
+func _set_player_controls_disabled(disabled):
+	player_controls_disabled = disabled
+	controls_disabled_changed.emit(disabled)
+	print("Controls du joueur " + ("désactivés" if disabled else "activés"))
+
+# Vérifier si une porte est déverrouillée (si son code a été entré correctement)
+func is_unlocked():
+	if not requires_code:
+		return true
+	return SymbolManager.check_door_symbols(door_id)
 
 # Réaction lorsque tous les symboles sont découverts
 func _on_all_symbols_discovered():

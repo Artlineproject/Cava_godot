@@ -55,6 +55,22 @@ func check_all_symbols_discovered():
 	
 	return false
 
+# Vérifier si tous les symboles sont découverts pour une porte spécifique
+func check_door_symbols(door_id):
+	if not door_codes.has(door_id):
+		print("Porte " + door_id + " non trouvée dans les codes de portes.")
+		return false
+	
+	var required_symbols = door_codes[door_id]
+	var all_discovered = true
+	
+	for symbol in required_symbols:
+		if not has_discovered_symbol_type(symbol):
+			all_discovered = false
+			break
+	
+	return all_discovered
+
 # Définir la porte active
 func set_current_door(door_id):
 	if door_id != current_door_id:

@@ -6,12 +6,13 @@ extends Node2D
 @export var associated_door_name = ""
 @export var animation_name_hover = "hover"
 @export var animation_name_default = "default"
+@export var animation_name_success = "success" # Animation pour code correct (symboles uniquement)
 
 # Variables pour la détection de survol
 var hover_check_interval = 0.05
 var last_hover_check_time = 0
 var last_mouse_position = Vector2.ZERO
-var hover_detection_radius = 30
+var hover_detection_radius = 70
 var hovering_slot_index = -1
 
 var current_slots = ["", "", ""]
@@ -55,6 +56,10 @@ func _process(delta):
 
 # Fonction pour vérifier quel slot est survolé
 func check_mouse_over_slots():
+	# Ne pas vérifier si le panneau est désactivé
+	if not is_active:
+		return
+		
 	# Récupérer la position du joueur souris
 	var mouse_players = get_tree().get_nodes_in_group(interactive_by_group)
 	if mouse_players.size() == 0:
@@ -136,6 +141,27 @@ func _set_slot_hover_state(slot_index, is_hovering):
 	# Jouer un son de survol si disponible
 	if is_hovering and slot.has_node("HoverSound"):
 		slot.get_node("HoverSound").play()
+
+# Fonction pour jouer l'animation de succès uniquement sur les symboles
+func _play_success_animation():
+	print("Animation de succès déclenchée sur les symboles")
+	
+	# Pour chaque slot, animer uniquement le symbole visible
+	for i in range(slots.size()):
+		var slot = slots[i]
+		var current_symbol = current_slots[i]
+		
+		if current_symbol != "":
+			var symbol_node_name = "Symbol_" + current_symbol
+			if slot.has_node(symbol_node_name):
+				var symbol_node = slot.get_node(symbol_node_name)
+				
+				if symbol_node is AnimatedSprite2D:
+					var success = _force_animation(symbol_node, animation_name_success)
+					if success:
+						print("  - Animation " + animation_name_success + " lancée sur symbole " + current_symbol)
+					else:
+						print("  - Le symbole " + current_symbol + " n'a pas d'animation " + animation_name_success)
 
 # Initialiser un slot
 func _initialize_slot(slot_index):
@@ -255,6 +281,11 @@ func _on_submit_pressed():
 		# Émettre le signal approprié
 		if is_correct:
 			print("Code correct! Signal code_correct émis.")
+			
+			# Jouer l'animation de succès sur les symboles uniquement
+			_play_success_animation()
+			
+			# Émettre le signal
 			code_correct.emit()
 			
 			# Test direct de l'ouverture de porte
@@ -276,6 +307,8 @@ func _on_submit_pressed():
 			else:
 				print("ERREUR: Ce panneau n'a pas de métadonnée 'associated_door'")
 			
+			# Désactiver le panneau après un court délai pour voir l'animation
+			await get_tree().create_timer(1.0).timeout
 			is_active = false
 		else:
 			print("Code incorrect. Réinitialisation du panneau.")

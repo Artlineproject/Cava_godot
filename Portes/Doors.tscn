@@ -1,12 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxulius4qm6xa"]
+[gd_scene load_steps=42 format=3 uid="uid://cxulius4qm6xa"]
 
 [ext_resource type="Script" path="res://Portes/doors.gd" id="1_aen8x"]
-[ext_resource type="Texture2D" uid="uid://b50w83jlhp2lq" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_6_final.png" id="2_y6lgm"]
-[ext_resource type="Texture2D" uid="uid://2unsncssdhe1" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_5.png" id="3_w40gv"]
-[ext_resource type="Texture2D" uid="uid://yffvaqltljkj" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_4.png" id="4_lbbh6"]
-[ext_resource type="Texture2D" uid="uid://ctc37vny4rvtl" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_3.png" id="5_ti51u"]
-[ext_resource type="Texture2D" uid="uid://6r4e3305ig7c" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_2.png" id="6_2vr5j"]
-[ext_resource type="Texture2D" uid="uid://cimtooici8tai" path="res://Symboles/Assets/Animation_Open_Door-20250324T175023Z-001/Animation_Open_Door/Door_Tuto_open_1.png" id="7_qjhv7"]
+[ext_resource type="Texture2D" uid="uid://lb1stwgm8qur" path="res://Portes/Assets/Animation_Illumination-20250327T162037Z-001/Animation_Illumination/Door_Tuto_light1.png" id="2_8l23n"]
+[ext_resource type="Texture2D" uid="uid://cbltsx555plj6" path="res://Portes/Assets/Animation_Open_Door-20250327T162041Z-001/Animation_Open_Door/Door_Tuto_open_6_final.png" id="3_3jrij"]
+[ext_resource type="Texture2D" uid="uid://dgw48lhl05psp" path="res://Portes/Assets/Under_The_Door/Under_the_Door_2.png" id="3_r5tk1"]
+[ext_resource type="Texture2D" uid="uid://dh1q6oinn0p4k" path="res://Portes/Assets/Animation_Illumination-20250327T162037Z-001/Animation_Illumination/Door_Tuto_light2.png" id="4_e27lq"]
+[ext_resource type="Texture2D" uid="uid://tq8nx536qg4h" path="res://Portes/Assets/Under_The_Door/Under_the_Door_3.png" id="4_oksdm"]
+[ext_resource type="Texture2D" uid="uid://c6ss60oodv6eg" path="res://Portes/Assets/Animation_Illumination-20250327T162037Z-001/Animation_Illumination/Door_Tuto_light3.png" id="5_6lcqx"]
+[ext_resource type="Texture2D" uid="uid://beurqxqnkj74a" path="res://Portes/Assets/Under_The_Door/Under_the_Door_4.png" id="5_yiphr"]
+[ext_resource type="Texture2D" uid="uid://c5ajh0d5tjr4r" path="res://Portes/Assets/Animation_Illumination-20250327T162037Z-001/Animation_Illumination/Door_Tuto_light4.png" id="6_aeb0l"]
+[ext_resource type="Texture2D" uid="uid://dcvm30nav0d26" path="res://Portes/Assets/Animation_Illumination-20250327T162037Z-001/Animation_Illumination/Door_Tuto_light5_final.png" id="7_128o5"]
+[ext_resource type="Texture2D" uid="uid://l3fpsx3e1drp" path="res://Portes/Assets/Animation_Open_Door-20250327T162041Z-001/Animation_Open_Door/Door_Tuto_open_1.png" id="7_k8ysm"]
+[ext_resource type="Texture2D" uid="uid://ceccuwuouqvdd" path="res://Portes/Assets/Animation_Open_Door-20250327T162041Z-001/Animation_Open_Door/Door_Tuto_open_2.png" id="8_ra5jy"]
+[ext_resource type="Texture2D" uid="uid://ennalu7675am" path="res://Portes/Assets/Animation_Open_Door-20250327T162041Z-001/Animation_Open_Door/Door_Tuto_open_3.png" id="9_gf45w"]
+[ext_resource type="Texture2D" uid="uid://dtj03w14nay8l" path="res://Portes/Assets/Animation_Open_Door-20250327T162041Z-001/Animation_Open_Door/Door_Tuto_open_4.png" id="10_o00yp"]
+[ext_resource type="Texture2D" uid="uid://qdhckasn3nvw" path="res://Portes/Assets/Animation_Open_Door-20250327T162041Z-001/Animation_Open_Door/Door_Tuto_open_5.png" id="11_ir1jh"]
+[ext_resource type="Texture2D" uid="uid://db4pxbgyqw41" path="res://Portes/Assets/Animation_Shake_Close_Door-20250327T163149Z-001/Animation_Shake_Close_Door/Door_Tuto_shaking_1.png" id="13_oyqwf"]
+[ext_resource type="Texture2D" uid="uid://i1wvav850h2u" path="res://Portes/Assets/Animation_Shake_Close_Door-20250327T163149Z-001/Animation_Shake_Close_Door/Door_Tuto_shaking_2.png" id="14_82ac4"]
+[ext_resource type="Texture2D" uid="uid://c4wgmphwvl2es" path="res://Portes/Assets/Under_The_Door/Under_the_Door_1.png" id="15_2hwvu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odoj7"]
 size = Vector2(36, 45)
@@ -14,58 +25,107 @@ size = Vector2(36, 45)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo6ox"]
 size = Vector2(103, 75)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1w5b"]
-atlas = ExtResource("2_y6lgm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wref8"]
+atlas = ExtResource("15_2hwvu")
+region = Rect2(0, 0, 47, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1ofk"]
+atlas = ExtResource("3_r5tk1")
+region = Rect2(0, 0, 47, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2qjs"]
+atlas = ExtResource("4_oksdm")
+region = Rect2(0, 0, 47, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4gip"]
+atlas = ExtResource("5_yiphr")
+region = Rect2(0, 0, 47, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_77xqx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wref8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1ofk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2qjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4gip")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_du8lw"]
+atlas = ExtResource("2_8l23n")
 region = Rect2(0, 0, 64, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6oco"]
-atlas = ExtResource("3_w40gv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxam2"]
+atlas = ExtResource("3_3jrij")
 region = Rect2(0, 0, 64, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_amg6b"]
-atlas = ExtResource("4_lbbh6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_w71ia"]
+atlas = ExtResource("2_8l23n")
 region = Rect2(0, 0, 64, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggd7d"]
-atlas = ExtResource("5_ti51u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tflhh"]
+atlas = ExtResource("4_e27lq")
 region = Rect2(0, 0, 64, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfprf"]
-atlas = ExtResource("6_2vr5j")
+[sub_resource type="AtlasTexture" id="AtlasTexture_uij5k"]
+atlas = ExtResource("5_6lcqx")
 region = Rect2(0, 0, 64, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_26s25"]
-atlas = ExtResource("7_qjhv7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2jf5"]
+atlas = ExtResource("6_aeb0l")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e604p"]
+atlas = ExtResource("7_128o5")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjdi1"]
+atlas = ExtResource("7_k8ysm")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbcf3"]
+atlas = ExtResource("8_ra5jy")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp5o0"]
+atlas = ExtResource("9_gf45w")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbvnm"]
+atlas = ExtResource("10_o00yp")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oud5h"]
+atlas = ExtResource("11_ir1jh")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw185"]
+atlas = ExtResource("3_3jrij")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3kdg"]
+atlas = ExtResource("13_oyqwf")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp5xd"]
+atlas = ExtResource("14_82ac4")
 region = Rect2(0, 0, 64, 60)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a7r5y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b1w5b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6oco")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_amg6b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ggd7d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wfprf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_26s25")
-}],
-"loop": false,
-"name": &"close",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_26s25")
+"texture": SubResource("AtlasTexture_du8lw")
 }],
 "loop": false,
 "name": &"idle_closed",
@@ -73,33 +133,59 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b1w5b")
+"texture": SubResource("AtlasTexture_lxam2")
 }],
 "loop": false,
 "name": &"idle_open",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_26s25")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_w71ia")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wfprf")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_tflhh")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ggd7d")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_uij5k")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_amg6b")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_i2jf5")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6oco")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_e604p")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b1w5b")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_sjdi1")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_sbcf3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hp5o0")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_nbvnm")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_oud5h")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hw185")
 }],
 "loop": false,
 "name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3kdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp5xd")
+}],
+"loop": false,
+"name": &"shake",
 "speed": 5.0
 }]
 
@@ -121,10 +207,17 @@ position = Vector2(0.5, -38)
 shape = SubResource("RectangleShape2D_uo6ox")
 debug_color = Color(0.225528, 0.15133, 0.273091, 0.42)
 
+[node name="underdoors" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.98023e-08, -24.7826)
+sprite_frames = SubResource("SpriteFrames_77xqx")
+autoplay = "default"
+frame = 1
+frame_progress = 0.0759092
+
 [node name="DoorSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -30)
 sprite_frames = SubResource("SpriteFrames_a7r5y")
-animation = &"idle_closed"
+animation = &"open"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(0, -21)
